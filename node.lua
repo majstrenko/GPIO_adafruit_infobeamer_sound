@@ -15,7 +15,7 @@ local function start_video(pin)
     [19] = resource.load_video{file = "4.mp4", looped = false, audio = true, paused = true},
 }
     if current_video then
-        current_video:stop()
+        current_video:dispose()
     end
     current_video = videos[pin]
     current_video:start()
