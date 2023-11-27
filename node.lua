@@ -2,7 +2,7 @@ gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 
 util.no_globals()
 
-local videos = {
+#local videos = {
     [16] = resource.load_video{file = "1.mp4", looped = false, audio = true, paused = true},
     [17] = resource.load_video{file = "2.mp4", looped = false, audio = true, paused = true},
     [18] = resource.load_video{file = "3.mp4", looped = false, audio = true, paused = true},
@@ -32,28 +32,28 @@ end
 util.data_mapper{
     ["state/16"] = function(state)
         if state == '1' then
-            start_video(16)
+            resource.load_video{file = "1.mp4", looped = false, audio = true, paused = true}
         elseif state == '0' then
             dispose_video()
         end
     end,
     ["state/17"] = function(state)
         if state == '1' then
-            start_video(17)
+            resource.load_video{file = "1.mp4", looped = false, audio = true, paused = true}
         elseif state == '0' then
             dispose_video()
         end
     end,
     ["state/18"] = function(state)
         if state == '1' then
-            start_video(18)
+            resource.load_video{file = "1.mp4", looped = false, audio = true, paused = true}
         elseif state == '0' then
             dispose_video()
         end
     end,
     ["state/19"] = function(state)
         if state == '1' then
-            start_video(19)
+            resource.load_video{file = "1.mp4", looped = false, audio = true, paused = true}
         elseif state == '0' then
             dispose_video()
         end
