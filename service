@@ -10,12 +10,10 @@ device.gpio.monitor(config.pin_19)
 def handle_pin(pin, state):
     if state == 1:
         print("pin {} touched".format(pin))
-        # Adjust the command format to match your Lua script
-        node.send('/state/{}'.format(pin), '1')
+        node.send('/state/{}'.format(pin), str(state))  # Send '1' as a string
     else:
         print("pin {} released".format(pin))
-        # Adjust the command format to match your Lua script
-        node.send('/state/{}'.format(pin), '0')
+        node.send('/state/{}'.format(pin), str(state))  # Send '0' as a string
 
 def gpio_poll_loop():
     for pin, state in device.gpio.poll_forever():
@@ -25,3 +23,4 @@ def gpio_poll_loop():
 # Start the GPIO polling loop in a separate thread
 gpio_poll_thread = threading.Thread(target=gpio_poll_loop)
 gpio_poll_thread.start()
+
