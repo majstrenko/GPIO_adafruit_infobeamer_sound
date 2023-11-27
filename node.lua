@@ -31,9 +31,6 @@ local function stop_video()
     video_playing = false
 end
 
-local function is_video_finished()
-    return current_video and current_video:state() == "finished"
-end
 
 util.data_mapper{
     ["state/16"] = function(state)
