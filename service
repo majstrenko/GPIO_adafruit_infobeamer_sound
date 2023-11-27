@@ -10,14 +10,16 @@ device.gpio.monitor(config.pin_19)
 def handle_pin(pin, state):
     if state == 1:
         print("pin {} touched".format(pin))
-        node.send('/state/%d:1' % pin)
-        time.sleep(5)  # Adjust the sleep time as needed
-        node.send('/state/%d:0' % pin)
-        print("pin {} touched state 0".format(pin))
+        # Adjust the command format to match your Lua script
+        node.send('/state/{}'.format(pin), '1')
+    else:
+        print("pin {} released".format(pin))
+        # Adjust the command format to match your Lua script
+        node.send('/state/{}'.format(pin), '0')
 
 def gpio_poll_loop():
     for pin, state in device.gpio.poll_forever():
-        if pin in [16, 17, 18, 19]:
+        if pin in [config.pin_16, config.pin_17, config.pin_18, config.pin_19]:
             threading.Thread(target=handle_pin, args=(pin, state)).start()
 
 # Start the GPIO polling loop in a separate thread
