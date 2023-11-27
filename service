@@ -7,10 +7,16 @@ device.gpio.monitor(config.pin_17)
 device.gpio.monitor(config.pin_18)
 device.gpio.monitor(config.pin_19)
 
+def send_command(pin, state):
+    node.send('/state/{}'.format(pin), str(state))
+
 def handle_pin(pin, state):
-    command = '{}:{}'.format(pin, '1' if state == 1 else '0')
-    print("Sending command:", command)
-    node.send('/state', command)  # Sending pin and state as a single string
+    if state == 1:
+        print("pin {} touched".format(pin))
+        send_command(pin, 1)
+        time.sleep(5)  # Adjust the sleep time as needed
+        send_command(pin, 0)
+        print("pin {} touched state 0".format(pin))
 
 def gpio_poll_loop():
     for pin, state in device.gpio.poll_forever():
@@ -20,3 +26,4 @@ def gpio_poll_loop():
 # Start the GPIO polling loop in a separate thread
 gpio_poll_thread = threading.Thread(target=gpio_poll_loop)
 gpio_poll_thread.start()
+
