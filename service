@@ -8,12 +8,9 @@ device.gpio.monitor(config.pin_18)
 device.gpio.monitor(config.pin_19)
 
 def handle_pin(pin, state):
-    if state == 1:
-        print("pin {} touched".format(pin))
-        node.send('/state/{}'.format(pin), str(state))  # Send '1' as a string
-    else:
-        print("pin {} released".format(pin))
-        node.send('/state/{}'.format(pin), str(state))  # Send '0' as a string
+    command = '1' if state == 1 else '0'
+    print("pin {} state: {}".format(pin, command))
+    node.send('/state/{}'.format(pin), command)  # Sending the command as the second argument
 
 def gpio_poll_loop():
     for pin, state in device.gpio.poll_forever():
