@@ -22,5 +22,5 @@ def gpio_poll_loop():
             threading.Thread(target=handle_pin, args=(pin, state)).start()
 
 # Start the GPIO polling loop in a separate thread
-gpio_poll_thread = threading.Thread(target=gpio_poll_loop)
-gpio_poll_thread.start()
+#gpio_poll_thread = threading.Thread(target=gpio_poll_loop)
+#gpio_poll_thread.start()
