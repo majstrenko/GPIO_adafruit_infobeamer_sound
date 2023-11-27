@@ -2,30 +2,25 @@ gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 
 util.no_globals()
 
-local videos = {
-    [16] = {file = "1.mp4", video = nil},
-    [17] = {file = "2.mp4", video = nil},
-    [18] = {file = "3.mp4", video = nil},
-    [19] = {file = "4.mp4", video = nil},
-}
+local videos = {}
 
 local current_video = nil
 local video_playing = false
 
 local function start_video(pin)
-    stop_video() -- Stop any currently playing video
+    stop_video()  -- Stop any currently playing video
+    videos[pin] = resource.load_video{file = pin .. ".mp4", looped = false, audio = true, paused = true}
     current_video = videos[pin]
-    current_video.video = resource.load_video{file = current_video.file, looped = false, audio = true, paused = true}
-    current_video.video:start()
+    current_video:start()
     video_playing = true
 end
 
 local function stop_video()
-    if current_video and current_video.video then
-        current_video.video:dispose()
-        current_video.video = nil
+    if current_video then
+        current_video:stop()
+        current_video:dispose()  -- Dispose of the video object
+        current_video = nil
     end
-    current_video = nil
     video_playing = false
 end
 
@@ -61,15 +56,15 @@ util.data_mapper{
 }
 
 function node.render()
-    if video_playing and current_video and current_video.video then
-        local video_state, w, h = current_video.video:state()
+    if video_playing and current_video then
+        local video_state, w, h = current_video:state()
         if video_state == "finished" then
             stop_video()
-            gl.clear(1, 0, 0, 1) -- red, default state
+            gl.clear(1, 0, 0, 1)  -- Red, default state
         else
-            current_video.video:draw(0, 0, WIDTH, HEIGHT)
+            current_video:draw(0, 0, WIDTH, HEIGHT)
         end
     else
-        gl.clear(1, 0, 0, 1) -- red, default state
+        gl.clear(1, 0, 0, 1)  -- Red, default state
     end
 end
