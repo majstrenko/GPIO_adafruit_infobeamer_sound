@@ -21,7 +21,7 @@ local function start_video(pin)
     video_playing = true
 end
 
-local function stop_video()
+local function dispose_video()
     if current_video then
         current_video:dispose()
     end
