@@ -11,7 +11,7 @@ def handle_pin(pin, state):
     if state == 1:
         print("pin {} touched".format(pin))
         node.send('/state/%d:1' % pin)
-        #time.sleep(5)  # Adjust the sleep time as needed
+        time.sleep(20)  # Adjust the sleep time as needed
         node.send('/state/%d:0' % pin)
         print("pin {} touched state 0".format(pin))
 
