@@ -16,7 +16,7 @@ local function start_video(pin)
         }
         
         if current_video then
-                current_video:stop()
+                current_video:dispose()
         end
                 current_video = videos[pin]
         current_video:start()
