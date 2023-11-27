@@ -1,4 +1,4 @@
-  gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
+gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 
 util.no_globals()
 
