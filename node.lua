@@ -15,14 +15,14 @@ local function start_video(pin)
     [19] = resource.load_video{file = "4.mp4", looped = false, audio = true, paused = true},
 }
     if current_video then
-        current_video:dispose()
+        current_video:stop()
     end
     current_video = videos[pin]
     current_video:start()
     video_playing = true
 end
 
-local function dispose_video()
+local function stop_video()
     if current_video then
         current_video:dispose()
     end
@@ -35,28 +35,28 @@ util.data_mapper{
         if state == '1' then
             start_video(16)
         elseif state == '0' then
-            dispose_video()
+            stop_video()
         end
     end,
     ["state/17"] = function(state)
         if state == '1' then
-            start_video(19)
+            start_video(17)
         elseif state == '0' then
-            dispose_video()
+            stop_video()
         end
     end,
     ["state/18"] = function(state)
         if state == '1' then
-            start_video(17)
+            start_video(18)
         elseif state == '0' then
-            dispose_video()
+            stop_video()
         end
     end,
     ["state/19"] = function(state)
         if state == '1' then
-            start_video(18)
+            start_video(19)
         elseif state == '0' then
-            dispose_video()
+            stop_video()
         end
     end,
 }
@@ -65,7 +65,7 @@ function node.render()
     if video_playing and current_video then
         local video_state, w, h = current_video:state()
         if video_state == "finished" then
-            dispose_video()
+            stop_video()
             gl.clear(1, 0, 0, 1) -- red, default state
         else
             current_video:draw(0, 0, WIDTH, HEIGHT)
