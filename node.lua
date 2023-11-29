@@ -3,7 +3,7 @@ gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 util.no_globals()
 
 local current_video = nil
-#local video_playing = false
+local video_playing = false
 
 
 local function start_video(pin)
@@ -19,7 +19,7 @@ local videos = {
         end
         current_video = videos[pin]
         current_video:start()
-        #video_playing = true
+        video_playing = true
 end
 
 
@@ -28,7 +28,7 @@ local function stop_video()
         current_video:dispose()
     end
     current_video = nil
-    #video_playing = false
+    video_playing = false
 end
 
 
