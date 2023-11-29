@@ -32,21 +32,25 @@ end
 util.data_mapper{
     ["state/16"] = function(state)
         if state == '1' then
+            stop_video()
             start_video(16)
         end
     end,
     ["state/17"] = function(state)
         if state == '1' then
+            stop_video()
             start_video(17)
         end
     end,
     ["state/18"] = function(state)
         if state == '1' then
+            stop_video()
             start_video(18)
         end
     end,
     ["state/19"] = function(state)
         if state == '1' then
+            stop_video()
             start_video(19)
         end
     end,
@@ -55,7 +59,7 @@ util.data_mapper{
 function node.render()
     if video_playing and current_video then
         local video_state, w, h = current_video:state()
-        if not video_playing and current_video then
+        if video_state == "finished" then
             stop_video()
         else
             current_video:draw(0, 0, WIDTH, HEIGHT)
