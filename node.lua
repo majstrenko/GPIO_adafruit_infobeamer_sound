@@ -22,7 +22,7 @@ local videos = {
         video_playing = true
 end
 
-video_playing = false
+local video_playing = false
 
 local function stop_video()
     if current_video then
