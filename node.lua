@@ -12,13 +12,14 @@ local videos = {
   [16] = resource.load_video{file = "1.mp4"; looped = false; audio = true; paused = true},
   [17] = resource.load_video{file = "2.mp4"; looped = false; audio = true; paused = true},
   [18] = resource.load_video{file = "3.mp4"; looped = false; audio = true; paused = true},
-  [19] = resource.load_video{file = "4.mp4"; looped = false; audio = true; paused = true}
+  [19] = resource.load_video{file = "4.mp4"; looped = false; audio = true; paused = true},
 }
     if current_video then
         current_video:dispose()
         end
         current_video = videos[pin]
         current_video:start()
+        video_playing = true
         
 end
 
@@ -28,9 +29,13 @@ local function stop_video()
         current_video:dispose()
     end
     current_video = nil
+    video_playing = false
    
 end
 
+local function is_video_finished()
+    return current_video and current_video:state() == "finished"
+end
 
 util.data_mapper{
     ["state/16"] = function(state)
@@ -65,13 +70,11 @@ util.data_mapper{
 
 function node.render()
     if video_playing and current_video then
-        local video_state, w, h = current_video:state()
-        if video_state == "finished" then
+        current_video:draw(0, 0, WIDTH, HEIGHT)
+        if is_video_finished() then
             stop_video()
-        else
-            current_video:draw(0, 0, WIDTH, HEIGHT)
         end
     else
-        gl.clear(1, 0, 0, 1) -- red, default state
+        gl.clear(1, 0, 0, 1) -- Red background if no video is playing
     end
 end
