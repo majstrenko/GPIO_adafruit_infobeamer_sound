@@ -25,7 +25,6 @@ end
 
 local function stop_video()
     if current_video then
-        current_video:stop()
         current_video:dispose()
     end
     current_video = nil
