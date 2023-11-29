@@ -56,9 +56,8 @@ function node.render()
     if video_playing and current_video then
         local video_state, w, h = current_video:state()
         
-        if current_video:draw(0, 0, WIDTH, HEIGHT)
-        end
     else
+        current_video:draw(0, 0, WIDTH, HEIGHT)
         gl.clear(1, 0, 0, 1) -- red, default state
     end
 end
