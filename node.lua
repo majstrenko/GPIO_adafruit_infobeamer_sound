@@ -3,7 +3,7 @@ gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 util.no_globals()
 
 local current_video = nil
-
+local video_playing = false
 
 
 local function start_video(pin)
