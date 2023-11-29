@@ -55,7 +55,7 @@ util.data_mapper{
 function node.render()
     if video_playing and current_video then
         local video_state, w, h = current_video:state()
-        if video_state == "finished" then
+        if current_video = false then
             stop_video()
         else
             current_video:draw(0, 0, WIDTH, HEIGHT)
