@@ -38,22 +38,16 @@ util.data_mapper{
     ["state/17"] = function(state)
         if state == '1' then
             start_video(17)
-        elseif state == '0' then
-            stop_video()
         end
     end,
     ["state/18"] = function(state)
         if state == '1' then
             start_video(18)
-        elseif state == '0' then
-            stop_video()
         end
     end,
     ["state/19"] = function(state)
         if state == '1' then
             start_video(19)
-        elseif state == '0' then
-            stop_video()
         end
     end,
 }
