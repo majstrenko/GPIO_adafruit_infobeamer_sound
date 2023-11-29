@@ -17,8 +17,7 @@ local videos = {
     if current_video then
         current_video:dispose()
         end
-    
-  current_video = videos[pin]
+        current_video = videos[pin]
         current_video:start()
         video_playing = true
 end
