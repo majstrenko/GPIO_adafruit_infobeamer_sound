@@ -11,7 +11,7 @@ local function start_video(pin)
         if current_video then
                 current_video:dispose()
         end
-        current_video = videos[pin]
+                current_video = videos[pin]
         current_video:start()
         video_playing = true
         
@@ -22,8 +22,8 @@ local function stop_video()
     if current_video then
         current_video:dispose()
     end
-    current_video = nil
-    video_playing = false
+                current_video = nil
+        video_playing = false
    
 end
 
