@@ -1,8 +1,8 @@
 {
     "name": "SoundTest_github_anton",
-    "author": "Florian Wesch <fw@info-beamer.com>",
-    "desc": "Displays images and videos in a rotation",
-    "repository": "https://github.com/info-beamer/package-hd-player",
+    "author": "Samo a Anton",
+    "desc": "",
+    "repository": "",
     "platforms": ["pi/v6", "pi/v7", "pi/v8"],
     "version": "2021-10-18",
     "offline": {
